@@ -1,5 +1,5 @@
 [package]
-name = "rust_lib_fl_test"
+name = "rust_lib_metadata_preview"
 version = "0.1.0"
 edition = "2021"
 
@@ -16,7 +16,7 @@ chrono = "0.4"
 fast_image_resize = { version = "4.0.0", features = ["image"] }
 file-format = { version = "0.25", features = ["reader"] }
 filetime = "0.2"
-flutter_rust_bridge = "=2.0.0-dev.38"
+flutter_rust_bridge = "=2.0.0-dev.39"
 # GIF encoder
 #gifski = "1.32.0"
 image = { version = "0.25", features = ["rayon"] }

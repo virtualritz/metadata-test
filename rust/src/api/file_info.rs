@@ -7,10 +7,7 @@ use image::{
 };
 use imgref::Img;
 use rgb::Rgba;
-use std::{
-    io::BufWriter,
-    path::PathBuf,
-};
+use std::{io::BufWriter, path::PathBuf};
 
 /// Information about a file.
 pub struct FileInfo {
@@ -18,12 +15,10 @@ pub struct FileInfo {
     metadata: Metadata,
 }
 
-
 impl TryFrom<PathBuf> for FileInfo {
     type Error = anyhow::Error;
 
     fn try_from(path_buf: PathBuf) -> Result<Self> {
-
         Ok(Self {
             metadata: Metadata::try_from(path_buf.clone())?,
             path: path_buf,
@@ -32,7 +27,6 @@ impl TryFrom<PathBuf> for FileInfo {
 }
 
 impl FileInfo {
-
     pub fn metadata(&self) -> &Metadata {
         &self.metadata
     }

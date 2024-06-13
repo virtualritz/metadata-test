@@ -1,5 +1,5 @@
-pub mod init;
 pub mod file_info;
+pub mod init;
 pub mod metadata;
 
 #[cfg(test)]

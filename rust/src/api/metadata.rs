@@ -1,23 +1,27 @@
 use anyhow::Result;
 use bigdecimal::BigDecimal;
 use chrono::{DateTime, Utc};
-use file_format::{FileFormat, Kind};
+use file_format::Kind;
 use filetime::FileTime;
 use image::GenericImageView;
 use num_rational::Ratio;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
-#[derive(Default, Debug)]
+// Exports for Flutter API.
+pub use file_format::FileFormat;
+pub use std::path::PathBuf;
+
+#[derive(Default, Debug, Clone)]
 pub struct Metadata {
     format: FileFormat,
+    accessed: DateTime<Utc>,
+    modified: DateTime<Utc>,
     title: Option<String>,
     author: Option<String>,
-    accessed: Option<DateTime<Utc>>,
-    modified: Option<DateTime<Utc>>,
     specific_metadata: Option<SpecificMetadata>,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub enum SpecificMetadata {
     Archive,
     Audio,
@@ -63,6 +67,30 @@ impl TryFrom<PathBuf> for Metadata {
 }
 
 impl Metadata {
+    pub fn format(&self) -> FileFormat {
+        self.format.clone()
+    }
+
+    pub fn accessed(&self) -> DateTime<Utc> {
+        self.accessed.clone()
+    }
+
+    pub fn modified(&self) -> DateTime<Utc> {
+        self.modified.clone()
+    }
+
+    pub fn title(&self) -> Option<String> {
+        self.title.clone()
+    }
+
+    pub fn author(&self) -> Option<String> {
+        self.author.clone()
+    }
+
+    pub fn specific(&self) -> Option<SpecificMetadata> {
+        self.specific_metadata.clone()
+    }
+
     /// Extract metadata from a file
     fn extract_metadata(file: &Path) -> Result<Metadata> {
         let format = FileFormat::from_file(file)?;
@@ -70,10 +98,12 @@ impl Metadata {
         let metadata = std::fs::metadata(file)?;
 
         let ft = FileTime::from_last_access_time(&metadata);
-        let accessed = DateTime::from_timestamp(ft.seconds(), ft.nanoseconds());
+        let accessed = DateTime::from_timestamp(ft.seconds(), ft.nanoseconds())
+            .unwrap_or(Utc::now());
 
         let ft = FileTime::from_last_modification_time(&metadata);
-        let modified = DateTime::from_timestamp(ft.seconds(), ft.nanoseconds());
+        let modified = DateTime::from_timestamp(ft.seconds(), ft.nanoseconds())
+            .unwrap_or(Utc::now());
 
         let author = None;
         let title = None;
