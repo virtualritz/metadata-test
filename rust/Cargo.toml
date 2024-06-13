@@ -1,0 +1,36 @@
+[package]
+name = "rust_lib_fl_test"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+# Generate freedesktop.org-compatible previews from images.
+#allmytoes = "0.4"
+allo-isolate = "0.1"
+anyhow = "1"
+bigdecimal = "0.4.3"
+chrono = "0.4"
+fast_image_resize = { version = "4.0.0", features = ["image"] }
+file-format = { version = "0.25", features = ["reader"] }
+filetime = "0.2"
+flutter_rust_bridge = "=2.0.0-dev.38"
+# GIF encoder
+#gifski = "1.32.0"
+image = { version = "0.25", features = ["rayon"] }
+imagesize = "0.12.0"
+# Simple image buffer with strides
+imgref = { version = "1", default-features = false }
+num-rational = "0.4.2"
+parking_lot = "0.12"
+rayon = "1.10.0"
+# Pixel for1.0.192ats
+rgb = "0.9"
+tokio = { version = "1", features = ["full"] }
+#[build-dependencies]
+#strum = { version = "0.26", features = ["derive"] }
+
+[patch.crates-io]
+rgb = { git = "https://github.com/kornelski/rust-rgb.git", branch = "v0.9"}
