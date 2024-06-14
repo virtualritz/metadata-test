@@ -27,8 +27,8 @@ impl TryFrom<PathBuf> for FileInfo {
 }
 
 impl FileInfo {
-    pub fn metadata(&self) -> &Metadata {
-        &self.metadata
+    pub fn metadata(&self) -> Metadata {
+        self.metadata.clone()
     }
 
     // Generate a sRGBa 8bit PNG preview and return the path to that file.

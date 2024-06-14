@@ -94,7 +94,7 @@ let decode_indices_ = flutter_rust_bridge::for_generated::lockable_compute_decod
             }
         }
         let api_that = &*api_that_decoded.unwrap();
- Result::<_,()>::Ok({ crate::api::file_info::FileInfo::metadata(api_that); })
+ Result::<_,()>::Ok(crate::api::file_info::FileInfo::metadata(api_that))
                     })())
                 } })
 }

@@ -73,7 +73,7 @@ abstract class RustLibApi extends BaseApi {
   Future<PathBuf> crateApiFileInfoFileInfoGeneratePreview(
       {required FileInfo that, required int previewLargerAxis});
 
-  Future<void> crateApiFileInfoFileInfoMetadata({required FileInfo that});
+  Future<Metadata> crateApiFileInfoFileInfoMetadata({required FileInfo that});
 
   Future<void> crateApiInitInitApp();
 
@@ -168,7 +168,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<void> crateApiFileInfoFileInfoMetadata({required FileInfo that}) {
+  Future<Metadata> crateApiFileInfoFileInfoMetadata({required FileInfo that}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         final serializer = SseSerializer(generalizedFrbRustBinding);
@@ -178,7 +178,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             funcId: 2, port: port_);
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_unit,
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerMetadata,
         decodeErrorData: null,
       ),
       constMeta: kCrateApiFileInfoFileInfoMetadataConstMeta,
@@ -1057,7 +1058,7 @@ class FileInfoImpl extends RustOpaque implements FileInfo {
       RustLib.instance.api.crateApiFileInfoFileInfoGeneratePreview(
           that: this, previewLargerAxis: previewLargerAxis);
 
-  Future<void> metadata() =>
+  Future<Metadata> metadata() =>
       RustLib.instance.api.crateApiFileInfoFileInfoMetadata(
         that: this,
       );

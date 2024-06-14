@@ -10,13 +10,13 @@ mod tests {
 
     #[test]
     fn it_works() -> Result<()> {
+
         let jpg =
             FileInfo::try_from(PathBuf::from("assets/gamma_dalai_lama_gray_good.jpg"))?;
-        println!("JPG\n{:?}", jpg.metadata());
+        println!("JPG\n{:#?}", jpg.metadata());
 
         let exr = FileInfo::try_from(PathBuf::from("assets/j0.3toD.exr"))?;
-        println!("EXR\n{:?}", exr.metadata());
-
+        println!("EXR\n{:#?}", exr.metadata());
         Ok(())
     }
 }
