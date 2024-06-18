@@ -1,15 +1,11 @@
 use anyhow::Result;
 use bigdecimal::BigDecimal;
 use chrono::{DateTime, Utc};
-use file_format::Kind;
+use file_format::{FileFormat, Kind};
 use filetime::FileTime;
 use image::GenericImageView;
 use num_rational::Ratio;
-use std::path::Path;
-
-// Exports for Flutter API.
-pub use file_format::FileFormat;
-pub use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 #[derive(Default, Debug, Clone)]
 pub struct Metadata {
@@ -67,31 +63,38 @@ impl TryFrom<PathBuf> for Metadata {
 }
 
 impl Metadata {
+    #[frb(sync)]
     pub fn format(&self) -> FileFormat {
         self.format.clone()
     }
 
+    #[frb(sync)]
     pub fn accessed(&self) -> DateTime<Utc> {
         self.accessed.clone()
     }
 
+    #[frb(sync)]
     pub fn modified(&self) -> DateTime<Utc> {
         self.modified.clone()
     }
 
+    #[frb(sync)]
     pub fn title(&self) -> Option<String> {
         self.title.clone()
     }
 
+    #[frb(sync)]
     pub fn author(&self) -> Option<String> {
         self.author.clone()
     }
 
+    #[frb(sync)]
     pub fn specific(&self) -> Option<SpecificMetadata> {
         self.specific_metadata.clone()
     }
 
     /// Extract metadata from a file
+    #[frb(sync)]
     fn extract_metadata(file: &Path) -> Result<Metadata> {
         let format = FileFormat::from_file(file)?;
 
@@ -159,6 +162,18 @@ impl Metadata {
                     pixel_aspect: Ratio::new(1, 1),
                 })
             }
+            /*Kind::Document => {
+                if OfficeOpenXmlDocument format {
+
+
+                    Some(SpecificMetadata::Document) {
+
+                    }
+                }
+                else {
+                    None
+                }
+            }*/
             _ => None,
         };
 

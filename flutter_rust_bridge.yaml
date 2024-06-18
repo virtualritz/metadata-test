@@ -1,3 +1,8 @@
 rust_input: crate::api
 rust_root: rust/
 dart_output: lib/src/rust
+rust_preamble: |
+  // Exports for Flutter API.
+  pub use file_format::FileFormat;
+  pub use std::path::PathBuf;
+enable_lifetime: true
