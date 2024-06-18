@@ -16,4 +16,7 @@ abstract class FileInfo implements RustOpaqueInterface {
   PathBuf generatePreview({required int previewLargerAxis});
 
   Metadata metadata();
+
+  factory FileInfo({required String fileName}) =>
+      RustLib.instance.api.crateApiFileInfoFileInfoNew(fileName: fileName);
 }

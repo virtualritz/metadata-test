@@ -6,6 +6,7 @@ use filetime::FileTime;
 use image::GenericImageView;
 use num_rational::Ratio;
 use std::path::{Path, PathBuf};
+use flutter_rust_bridge::frb;
 
 #[derive(Default, Debug, Clone)]
 pub struct Metadata {

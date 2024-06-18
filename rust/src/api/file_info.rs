@@ -13,7 +13,6 @@ use std::{
 };
 use flutter_rust_bridge::frb;
 
-
 /// Information about a file.
 pub struct FileInfo {
     path: PathBuf,
@@ -24,7 +23,7 @@ pub struct FileInfo {
 impl TryFrom<PathBuf> for FileInfo {
     type Error = anyhow::Error;
 
-    #[frb(async)]
+    #[frb(sync)]
     fn try_from(path_buf: PathBuf) -> Result<Self> {
         Ok(Self {
             metadata: Metadata::try_from(path_buf.clone())?,
@@ -34,11 +33,11 @@ impl TryFrom<PathBuf> for FileInfo {
 }
 */
 
-impl TryFrom<String> for FileInfo {
+impl TryFrom<&str> for FileInfo {
     type Error = anyhow::Error;
 
     #[frb(sync)]
-    fn try_from(string: String) -> Result<Self> {
+    fn try_from(string: &str) -> Result<Self> {
         let path_buf = PathBuf::from(string);
         Ok(Self {
             metadata: Metadata::try_from(path_buf.clone())?,
@@ -49,6 +48,11 @@ impl TryFrom<String> for FileInfo {
 
 
 impl FileInfo {
+    #[frb(sync)]
+    pub fn new(file_name: &str) -> Result<Self> {
+        Self::try_from(file_name)
+    }
+
     #[frb(sync)]
     pub fn metadata(&self) -> Metadata {
         self.metadata.clone()
