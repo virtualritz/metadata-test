@@ -8,15 +8,27 @@ import '../lib.dart';
 import 'metadata.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `generate_preview_file_name`
+
+            // These functions are ignored because they are not marked as `pub`: `generate_preview_file_name`
 // These types are ignored because they are not used by any `pub` functions: `Preview`
 
-// Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<FileInfo>>
-abstract class FileInfo implements RustOpaqueInterface {
-  PathBuf generatePreview({required int previewLargerAxis});
 
-  Metadata metadata();
+            
 
-  factory FileInfo({required String fileName}) =>
-      RustLib.instance.api.crateApiFileInfoFileInfoNew(fileName: fileName);
-}
+            
+                // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<FileInfo>>
+                abstract class FileInfo implements RustOpaqueInterface {
+                     PathBuf  generatePreview({required int previewLargerAxis });
+
+
+ Metadata  metadata();
+
+
+factory FileInfo({required String fileName })=>RustLib.instance.api.crateApiFileInfoFileInfoNew(fileName: fileName);
+
+
+
+                    
+                }
+                
+            

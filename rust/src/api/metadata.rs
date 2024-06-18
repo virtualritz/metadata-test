@@ -35,7 +35,7 @@ pub enum SpecificMetadata {
     Image {
         width: u32,
         height: u32,
-        pixel_aspect: Ratio<u32>,
+        pixel_aspect: f32, //Ratio<u32>,
     },
     Metadata,
     Model,
@@ -49,9 +49,9 @@ pub enum SpecificMetadata {
     Video {
         width: u32,
         height: u32,
-        pixel_aspect: Ratio<u32>,
+        pixel_aspect: f32, //Ratio<u32>,
         number_of_frames: usize,
-        frames_per_second: BigDecimal,
+        frames_per_second: f32, //BigDecimal,
     },
 }
 
@@ -160,7 +160,7 @@ impl Metadata {
                     width,
                     height,
                     // For now we leave this as square.
-                    pixel_aspect: Ratio::new(1, 1),
+                    pixel_aspect: 1.0, //Ratio::new(1, 1),
                 })
             }
             /*Kind::Document => {

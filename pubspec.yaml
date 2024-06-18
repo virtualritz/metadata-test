@@ -28,9 +28,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  freezed_annotation: ^2.4.1
   flutter:
     sdk: flutter
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,6 +40,8 @@ dependencies:
   flutter_rust_bridge: 2.0.0-dev.40
 
 dev_dependencies:
+  freezed: ^1.0.0
+  freezed_annotation: ^2.4.1
   flutter_test:
     sdk: flutter
 
