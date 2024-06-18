@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  freezed_annotation: ^2.4.1
   flutter:
     sdk: flutter
 
@@ -38,10 +37,12 @@ dependencies:
   rust_lib_metadata_preview:
     path: rust_builder
   flutter_rust_bridge: 2.0.0-dev.40
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
-  freezed: ^1.0.0
-  freezed_annotation: ^2.4.1
+  freezed: ^2.5.2
+  build_runner: ^2.4.11
+
   flutter_test:
     sdk: flutter
 
